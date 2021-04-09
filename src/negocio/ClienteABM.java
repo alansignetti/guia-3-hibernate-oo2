@@ -2,8 +2,11 @@ package negocio;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
 import dao.ClienteDao;
 import datos.Cliente;
+import datos.Prestamo;
 
 public class ClienteABM {
 	ClienteDao dao = new ClienteDao();
@@ -36,7 +39,16 @@ dao.eliminar(c);
 		return dao.traer();
 	}
 
-	public Cliente traerClienteYPrestamos(long idCliente) {
-		return dao.traerClienteYPrestamos(idCliente);
+	public Cliente traerClienteYPrestamos(long idCliente) throws Exception {
+		
+		Cliente c = dao.traer(idCliente);
+		
+		Set<Prestamo> listaPrestamo = c.getPrestamos();
+		if (listaPrestamo == null || listaPrestamo.isEmpty()) {
+			throw new Exception("El cliente "+ c.getNombre()+ " no tiene ningun prestamo");	 
+		}
+		else {
+			return dao.traerClienteYPrestamos(idCliente);
+		}
 	}
 }

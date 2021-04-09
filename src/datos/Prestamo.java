@@ -10,17 +10,19 @@ public class Prestamo {
 	private double interes;
 	private int cantCuotas;
 	private Cliente cliente;
+	private boolean cancelado;
 
 	public Prestamo() {
 	}
 
-	public Prestamo(LocalDate fecha, double monto, double interes, int cantCuotas, Cliente cliente) {
+	public Prestamo(LocalDate fecha, double monto, double interes, int cantCuotas, Cliente cliente,boolean cancelado ) {
 		super();
 		this.fecha = fecha;
 		this.monto = monto;
 		this.interes = interes;
 		this.cantCuotas = cantCuotas;
 		this.cliente = cliente;
+		this.cancelado = cancelado;
 	}
 
 	public long getIdPrestamo() {
@@ -70,10 +72,17 @@ public class Prestamo {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	public int getCancelado() {
+		return cantCuotas;
+	}
+
+	public void setCancelado(int cantCuotas) {
+		this.cantCuotas = cantCuotas;
+	}
 
 	public String toString() {
 		String prestamo = "Prestamo: $ " + monto + "\nFecha: " + Funciones.traerFechaCorta(fecha) + "\nInteres: "
-				+ interes + "\nCant.de Cuotas: " + cantCuotas;
+				+ interes + "\nCant.de Cuotas: " + cantCuotas + "\nCancelado: "+ cancelado;
 		return prestamo;
 	}
 }

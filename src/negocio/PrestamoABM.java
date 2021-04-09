@@ -3,6 +3,8 @@ package negocio;
 import dao.PrestamoDao;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
 import datos.Cliente;
 import datos.Prestamo;
 
@@ -23,15 +25,22 @@ public class PrestamoABM {
 		
 	}
 
-	public List<Prestamo> traerPrestamo(Cliente c) {
-		return dao.traer(c);
+	public List<Prestamo> traerPrestamo(Cliente c) throws Exception {
+		
+		Set<Prestamo> listaPrestamo = c.getPrestamos();
+		if (listaPrestamo == null || listaPrestamo.isEmpty()) {
+			throw new Exception("El cliente "+ c.getNombre()+ " no tiene ningun prestamo");	 
+		}
+		else {
+			return dao.traer(c);
+		}
 	}
 	/*
 	 * Pendiente implementar Alta, Modificar
 	 */
 	public boolean agregarPrestamo(LocalDate fecha,double monto,double interes,int cantCuotas,Cliente cliente) {
 		
-		Prestamo p = new Prestamo(fecha,monto,interes,cantCuotas,cliente);
+		Prestamo p = new Prestamo(fecha,monto,interes,cantCuotas,cliente,false);
 		return cliente.getPrestamos().add(p);
 	}
 	

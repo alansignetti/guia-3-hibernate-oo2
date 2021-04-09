@@ -21,6 +21,23 @@ public class PrestamoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 
+	
+	public int agregar(Prestamo objeto) {
+		int id = 0;
+		try {
+			iniciaOperacion();
+			id = Integer.parseInt(session.save(objeto).toString());
+			tx.commit();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
+		return id;
+	}
+
+	
 	public Prestamo traer(long idPrestamo) throws HibernateException {
 		Prestamo obj = null;
 		try {
