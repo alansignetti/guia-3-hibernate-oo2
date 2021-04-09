@@ -1,6 +1,8 @@
 package datos;
 
 import java.time.LocalDate;
+import java.util.Set;
+
 import funciones.Funciones;
 
 public class Prestamo {
@@ -11,6 +13,7 @@ public class Prestamo {
 	private int cantCuotas;
 	private Cliente cliente;
 	private boolean cancelado;
+	private Set<Cuota> cuotas;
 
 	public Prestamo() {
 	}
@@ -78,6 +81,13 @@ public class Prestamo {
 
 	public void setCancelado(int cantCuotas) {
 		this.cantCuotas = cantCuotas;
+	}
+	public Set<Cuota> getPrestamos() {
+		return cuotas;
+	}
+
+	public void setPrestamos(Set<Cuota> prestamos) {
+		this.cuotas = prestamos;
 	}
 
 	public String toString() {
