@@ -13,10 +13,10 @@ public class Cuota {
 	private boolean cancelada;
 	private LocalDate fechaPago;
 	private double punitorios;
-	private int idPrestamo;
+	private Prestamo prestamo;
 
 	public Cuota(LocalDate fechaVencimiento, double saldoPendiente,double amortizacion, double interesCuota, double cuota, double deuda,
-			boolean cancelada, LocalDate fechaPago, double punitorios, int idPrestamo) {
+			boolean cancelada, LocalDate fechaPago, double punitorios, Prestamo prestamo) {
 		super();
 		this.fechaVencimiento = fechaVencimiento;
 		this.saldoPendiente = saldoPendiente;
@@ -27,7 +27,7 @@ public class Cuota {
 		this.cancelada = cancelada;
 		this.fechaPago = fechaPago;
 		this.punitorios = punitorios;
-		this.idPrestamo = idPrestamo;
+		this.prestamo = prestamo;
 	}
 
 	public int getNroCuota() {
@@ -102,12 +102,12 @@ public class Cuota {
 		this.punitorios = punitorios;
 	}
 
-	public long getIdPrestamo() {
-		return idPrestamo;
+	public Prestamo getprestamo() {
+		return prestamo;
 	}
 
-	public void setIdPrestamo(int idPrestamo) {
-		this.idPrestamo = idPrestamo;
+	public void setprestamo(Prestamo prestamo) {
+		this.prestamo = prestamo;
 	}
 
 	public double getAmortizacion() {
@@ -122,8 +122,8 @@ public class Cuota {
 	public String toString() {
 		return "Cuota: " + nroCuota + "\nfechaVencimiento: " + fechaVencimiento + "\nsaldoPendiente: " + saldoPendiente
 				+"\namortizacion: "+amortizacion+ "\ninteresCuota: " + interesCuota + "\ncuota: " + cuota + "\ndeuda: " + deuda + "\ncancelada: "
-				+ cancelada + "\nfechaPago: " + fechaPago + "\npunitorios: " + punitorios + "\nidPrestamo: "
-				+ idPrestamo;
+				+ cancelada + "\nfechaPago: " + fechaPago + "\npunitorios: " + punitorios + "\nprestamo: "
+				+ prestamo;
 	}
 
 }
