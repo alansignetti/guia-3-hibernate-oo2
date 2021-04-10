@@ -52,4 +52,6 @@ public class PrestamoABM {
 		p.setMonto(monto);
 	}
 	
+	
+	
 }

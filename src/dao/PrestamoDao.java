@@ -36,7 +36,6 @@ public class PrestamoDao {
 		}
 		return id;
 	}
-
 	
 	public Prestamo traer(long idPrestamo) throws HibernateException {
 		Prestamo obj = null;

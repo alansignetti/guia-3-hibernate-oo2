@@ -82,11 +82,11 @@ public class Prestamo {
 	public void setCancelado(int cantCuotas) {
 		this.cantCuotas = cantCuotas;
 	}
-	public Set<Cuota> getPrestamos() {
+	public Set<Cuota> getCuotas() {
 		return cuotas;
 	}
 
-	public void setPrestamos(Set<Cuota> prestamos) {
+	public void setCuotas(Set<Cuota> prestamos) {
 		this.cuotas = prestamos;
 	}
 

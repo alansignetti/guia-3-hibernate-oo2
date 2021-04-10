@@ -30,24 +30,23 @@ public class ClienteABM {
 		dao.actualizar(c);
 	}
 
-public void eliminar(long idCliente) {
-Cliente c = dao.traer(idCliente);
-dao.eliminar(c);
-}
+	public void eliminar(long idCliente) {
+		Cliente c = dao.traer(idCliente);
+		dao.eliminar(c);
+	}
 
 	public List<Cliente> traer() {
 		return dao.traer();
 	}
 
 	public Cliente traerClienteYPrestamos(long idCliente) throws Exception {
-		
+
 		Cliente c = dao.traer(idCliente);
-		
+
 		Set<Prestamo> listaPrestamo = c.getPrestamos();
 		if (listaPrestamo == null || listaPrestamo.isEmpty()) {
-			throw new Exception("El cliente "+ c.getNombre()+ " no tiene ningun prestamo");	 
-		}
-		else {
+			throw new Exception("El cliente " + c.getNombre() + " no tiene ningun prestamo");
+		} else {
 			return dao.traerClienteYPrestamos(idCliente);
 		}
 	}
