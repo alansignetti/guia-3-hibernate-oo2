@@ -15,6 +15,6 @@
         <property column="cancelada" name="cancelada" type="boolean" />
         <property column="fechaPago" name="fechaPago" type="LocalDate" />
         <property column="punitorios" name="punitorios" type="double" />
-       	<many-to-one name="prestamo" class="datos.Prestamo" column='idPrestamo' not-null="true"    />
+       	<many-to-one name="prestamo" class="datos.Prestamo" column='prestamo' not-null="true"    />
     </class>
 </hibernate-mapping>

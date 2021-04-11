@@ -21,7 +21,6 @@ public class PrestamoDao {
 		throw new HibernateException("ERROR en la capa de acceso a datos", he);
 	}
 
-	
 	public int agregar(Prestamo objeto) {
 		int id = 0;
 		try {
@@ -36,7 +35,7 @@ public class PrestamoDao {
 		}
 		return id;
 	}
-	
+
 	public Prestamo traer(long idPrestamo) throws HibernateException {
 		Prestamo obj = null;
 		try {
@@ -47,6 +46,19 @@ public class PrestamoDao {
 			session.close();
 		}
 		return obj;
+	}
+
+	public void actualizar(Prestamo objeto) throws HibernateException {
+		try {
+			iniciaOperacion();
+			session.update(objeto);
+			tx.commit();
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
+		} finally {
+			session.close();
+		}
 	}
 
 	@SuppressWarnings("unchecked")

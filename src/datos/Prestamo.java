@@ -11,22 +11,24 @@ public class Prestamo {
 	private double monto;
 	private double interes;
 	private int cantCuotas;
-	private Cliente cliente;
 	private boolean cancelado;
-	private Set<Cuota> cuotas;
+	private Set<Cuota> cuotas;  
+	private Cliente cliente;
 
 	public Prestamo() {
 	}
 
-	public Prestamo(LocalDate fecha, double monto, double interes, int cantCuotas, Cliente cliente,boolean cancelado ) {
+	public Prestamo(LocalDate fecha, double monto, double interes, int cantCuotas, boolean cancelado,Cliente cliente) {
 		super();
 		this.fecha = fecha;
 		this.monto = monto;
 		this.interes = interes;
 		this.cantCuotas = cantCuotas;
+		this.cancelado = false;
 		this.cliente = cliente;
-		this.cancelado = cancelado;
 	}
+	
+	
 
 	public long getIdPrestamo() {
 		return idPrestamo;
@@ -75,24 +77,27 @@ public class Prestamo {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public int getCancelado() {
-		return cantCuotas;
+	
+	public boolean getCancelado() {
+		return cancelado;
 	}
 
-	public void setCancelado(int cantCuotas) {
-		this.cantCuotas = cantCuotas;
+	public void setCancelado(boolean cancelado) {
+		this.cancelado = cancelado;
 	}
+	
+	
 	public Set<Cuota> getCuotas() {
 		return cuotas;
 	}
 
-	public void setCuotas(Set<Cuota> prestamos) {
-		this.cuotas = prestamos;
+	public void setCuotas(Set<Cuota> cuotas) {
+		this.cuotas = cuotas;
 	}
 
 	public String toString() {
 		String prestamo = "Prestamo: $ " + monto + "\nFecha: " + Funciones.traerFechaCorta(fecha) + "\nInteres: "
-				+ interes + "\nCant.de Cuotas: " + cantCuotas + "\nCancelado: "+ cancelado;
+				+ interes + "\nCant.de Cuotas: " + cantCuotas + "\nCancelado: " + cancelado;
 		return prestamo;
 	}
 }

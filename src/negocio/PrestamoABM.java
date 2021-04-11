@@ -38,20 +38,24 @@ public class PrestamoABM {
 	/*
 	 * Pendiente implementar Alta, Modificar
 	 */
-	public boolean agregarPrestamo(LocalDate fecha,double monto,double interes,int cantCuotas,Cliente cliente) {
+	public int agregarPrestamo(LocalDate fecha,double monto,double interes, int cantCuotas,Cliente cliente) {
 		
-		Prestamo p = new Prestamo(fecha,monto,interes,cantCuotas,cliente,false);
-		return cliente.getPrestamos().add(p);
+		Prestamo p = new Prestamo(fecha,monto,interes,cantCuotas,false, cliente);
+		
+//		agregarCuota
+//		Cuota cuota1 = new Cuota(fecha, CantCuotas, monto, interes, CantCuotas, interes, cancelado, fecha, CantCuotas, p);
+//      double saldoPendiente = monto;
+//
+//      double amortizacion_numero =
+//
+//      double amortizacion = ;
+		return dao.agregar(p);
 	}
 	
-	public void modificarPrestamo(Prestamo p,LocalDate fecha,double monto,double interes,int cantCuotas ) throws Exception{
+	public void modificarPrestamo(Prestamo p ) throws Exception{
+		dao.actualizar(p);
+	}
 
-		p.setCantCuotas(cantCuotas);
-		p.setFecha(fecha);
-		p.setInteres(interes);
-		p.setMonto(monto);
-	}
-	
-	
-	
+
+   
 }

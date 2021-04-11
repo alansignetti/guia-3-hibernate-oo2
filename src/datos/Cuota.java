@@ -15,6 +15,8 @@ public class Cuota {
 	private double punitorios;
 	private Prestamo prestamo;
 
+	
+	public Cuota() {};
 	public Cuota(LocalDate fechaVencimiento, double saldoPendiente,double amortizacion, double interesCuota, double cuota, double deuda,
 			boolean cancelada, LocalDate fechaPago, double punitorios, Prestamo prestamo) {
 		super();
