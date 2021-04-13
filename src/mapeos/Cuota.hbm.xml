@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="datos.Cuota" table="cuota">
-        <id column="nroCuota" name="Cuota">
+        <id column="idCuota" name="idCuota">
             <generator class="identity" />
         </id>
         <property column="fechaVencimiento" name="fechaVencimiento" type="LocalDate" />
@@ -15,6 +15,7 @@
         <property column="cancelada" name="cancelada" type="boolean" />
         <property column="fechaPago" name="fechaPago" type="LocalDate" />
         <property column="punitorios" name="punitorios" type="double" />
+        <property column="nroCuota" name="nroCuota" type="int" />
        	<many-to-one name="prestamo" class="datos.Prestamo" column='prestamo' not-null="true"    />
     </class>
 </hibernate-mapping>

@@ -1,6 +1,7 @@
 package negocio;
 
 import dao.PrestamoDao;
+import negocio.CuotaABM;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -38,19 +39,18 @@ public class PrestamoABM {
 	/*
 	 * Pendiente implementar Alta, Modificar
 	 */
-	public int agregarPrestamo(LocalDate fecha,double monto,double interes, int cantCuotas,Cliente cliente) {
+	public void agregarPrestamo(LocalDate fecha,double monto,double interes, int cantCuotas,Cliente cliente) {
+		CuotaABM c = new CuotaABM();
 		
 		Prestamo p = new Prestamo(fecha,monto,interes,cantCuotas,false, cliente);
 		
-//		agregarCuota
-//		Cuota cuota1 = new Cuota(fecha, CantCuotas, monto, interes, CantCuotas, interes, cancelado, fecha, CantCuotas, p);
-//      double saldoPendiente = monto;
-//
-//      double amortizacion_numero =
-//
-//      double amortizacion = ;
-		return dao.agregar(p);
+		dao.agregar(p);
+		
+		c.agregarCuota(p);
+		
+		
 	}
+	
 	
 	public void modificarPrestamo(Prestamo p ) throws Exception{
 		dao.actualizar(p);

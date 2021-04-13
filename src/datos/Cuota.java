@@ -3,7 +3,7 @@ package datos;
 import java.time.LocalDate;
 
 public class Cuota {
-	private int nroCuota;
+	private int idCuota;
 	private LocalDate fechaVencimiento;
 	private double saldoPendiente;
 	private double amortizacion;
@@ -13,12 +13,13 @@ public class Cuota {
 	private boolean cancelada;
 	private LocalDate fechaPago;
 	private double punitorios;
+	private int nroCuota;
 	private Prestamo prestamo;
 
 	
 	public Cuota() {};
 	public Cuota(LocalDate fechaVencimiento, double saldoPendiente,double amortizacion, double interesCuota, double cuota, double deuda,
-			boolean cancelada, LocalDate fechaPago, double punitorios, Prestamo prestamo) {
+			boolean cancelada, LocalDate fechaPago, double punitorios, Prestamo prestamo, int nroCuota) {
 		super();
 		this.fechaVencimiento = fechaVencimiento;
 		this.saldoPendiente = saldoPendiente;
@@ -29,6 +30,7 @@ public class Cuota {
 		this.cancelada = cancelada;
 		this.fechaPago = fechaPago;
 		this.punitorios = punitorios;
+		this.nroCuota = nroCuota;
 		this.prestamo = prestamo;
 	}
 
@@ -119,13 +121,20 @@ public class Cuota {
 	public void setAmortizacion(double amortizacion) {
 		this.amortizacion = amortizacion;
 	}
+	public int getIdCuota() {
+		return idCuota;
+	}
+	public void setIdCuota(int idCuota) {
+		this.idCuota = idCuota;
+	}
 
 	@Override
 	public String toString() {
-		return "Cuota: " + nroCuota + "\nfechaVencimiento: " + fechaVencimiento + "\nsaldoPendiente: " + saldoPendiente
+		return "("+idCuota+")Cuota: " + nroCuota + "\nfechaVencimiento: " + fechaVencimiento + "\nsaldoPendiente: " + saldoPendiente
 				+"\namortizacion: "+amortizacion+ "\ninteresCuota: " + interesCuota + "\ncuota: " + cuota + "\ndeuda: " + deuda + "\ncancelada: "
 				+ cancelada + "\nfechaPago: " + fechaPago + "\npunitorios: " + punitorios + "\nprestamo: "
 				+ prestamo;
 	}
+	
 
 }

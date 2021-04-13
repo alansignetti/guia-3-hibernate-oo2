@@ -7,6 +7,7 @@ import dao.CuotaDao;
 import datos.Cliente;
 import datos.Cuota;
 import datos.Prestamo;
+import funciones.Funciones;
 
 public class CuotaABM {
 	private CuotaDao dao = new CuotaDao();
@@ -22,7 +23,6 @@ public class CuotaABM {
 	}
 
 	public void agregarCuota(Prestamo prestamo) {
-//		Cuota c = new Cuota(fechaVencimiento, saldoPendiente, amortizacion, interesCuota, cuota, deuda, cancelada, fechaPago, punitorios, prestamo);
 		Prestamo p = prestamo;
 		//crea variables
 		LocalDate fechaVencimiento = LocalDate.now();
@@ -31,27 +31,53 @@ public class CuotaABM {
 		double interesCuota = 1;
 		double cuota = 1;
 		double deuda = 1;
+		int nroCuota = 1;
+		int i = 1;
 		boolean cancelada = false;
 		LocalDate fechaPago = LocalDate.now();
 		double punitorios = 1;
-//		Cuota c1 = new Cuota(LocalDate.now(), 1, 1, 1, 1, 1, false, LocalDate.now(), 1, p);
-		Cuota c2 = new Cuota(LocalDate.now(), 2, 2, 2, 2, 2, false, LocalDate.now(), 1, p);
-		Cuota c1 = new Cuota(fechaVencimiento, saldoPendiente, amortizacion, interesCuota, cuota, deuda, cancelada, fechaPago, punitorios, p);
+		double amortizacionNumerador;
+        double amortizacionDenominador;
+        double amortizacionResultado;
+        
 		
-		int i = 1;
-		System.out.println("\n\n\nNo entro" + p.getCantCuotas());
-		while (i <= p.getCantCuotas()) {
-			System.out.println("\n Entro al while:" + i );
-			System.out.println(fechaVencimiento+"\n"+ saldoPendiente+"\n"+ amortizacion+"\n"+ interesCuota+"\n"+ cuota+"\n"+ deuda+"\n"+ cancelada+"\n"+ fechaPago+"\n"+ punitorios+"\n"+ prestamo);
+		while (i <= p.getCantCuotas()) {			
 			if (i == 1) {
-				dao.agregar(c1);
-				i++;
-				System.out.println(i + "entro primer if");
-			} else {
+				//Calculo de la primera cuota
+            	
+            	saldoPendiente = p.getMonto();
+            	
+            	amortizacionNumerador = saldoPendiente*p.getInteres();
+            			
+            	amortizacionDenominador = Math.pow((1+p.getInteres()), p.getCantCuotas()) -1 ;
+            	
+            	amortizacionResultado = amortizacionNumerador / amortizacionDenominador;
+            	
+            	interesCuota = saldoPendiente*p.getInteres();
+            	
+            	cuota = amortizacionResultado + interesCuota;
+            	
+            	deuda = saldoPendiente - amortizacionResultado;
+            	
+            	saldoPendiente = saldoPendiente - amortizacionResultado;
+            	
+            	fechaVencimiento = p.getFecha().plusMonths(1);
+            	
+            	while((Funciones.esDiaHabil(fechaVencimiento)) == false){ // si no es dia habil le agrega un dia hasta q lo sea
+                    fechaVencimiento.plusDays(1);
+            }
+            	Cuota c1 = new Cuota(fechaVencimiento, saldoPendiente, amortizacion, interesCuota, cuota, deuda, cancelada, fechaPago, punitorios, prestamo,i);
+				
+				dao.agregar(c1);				
+				System.out.println("i="+i+"//entro primer if");
+			} 
+			else{
+				Cuota c2 = new Cuota(LocalDate.now(), 2, 2, 2, 2, 2, false, LocalDate.now(), 1, p,i);
+        		
 				dao.agregar(c2);
-				i++;
-				System.out.println(i + "entro 2do if");
+				System.out.println("i="+i+"//entro 2do if");
 			}
+			i++;			
 		}
 	}
 
